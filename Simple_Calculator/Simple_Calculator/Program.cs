@@ -1,4 +1,6 @@
-﻿namespace Simple_Calculator
+﻿using System.Transactions;
+
+namespace Simple_Calculator
 {
     internal class Program
     {
@@ -6,7 +8,18 @@
         {
 
             // Our basic functions only perform operations on integers.
-            Calculate(1, 2, "Add"); // expect 3
+
+            // Simple version of taking user input. Want to make this
+            // a single line of input like "3 + 4" and use the operator
+            // for the switch statement, so it's more like a real calculator.
+            Console.WriteLine("Enter first value");
+            int userInputValue1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter second value");
+            int userInputValue2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter operation to perform");
+            string userInputOperation = Console.ReadLine();
+
+            Calculate(userInputValue1, userInputValue2, userInputOperation);
             Calculate(4, 3, "Subtract"); //expect 1
             Calculate(5, 3, "Multiply"); // expect 15
             Calculate(8, 4, "Divide"); // expect 2
