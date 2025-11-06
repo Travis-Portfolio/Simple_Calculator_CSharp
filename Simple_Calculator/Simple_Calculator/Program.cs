@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using System.Text.RegularExpressions;
+using System.Transactions;
 
 namespace Simple_Calculator
 {
@@ -18,23 +19,32 @@ namespace Simple_Calculator
 
         static void startCalculator()
         {
+            // may want to separate some of this logic out, this method may be doing too much.
             Console.WriteLine("Welcome to the C# calculator!");
-            Console.WriteLine("Please enter two operands and an operator (+,-,*,/)");
+            Console.WriteLine("Please enter two operands separated by an operator (+,-,*,/)");
             Console.WriteLine("Type EXIT to end the program");
 
-            // need to find a way to handle non-standard input
+            string pattern = @"^\s*\d+\s*[+\-*/]\s*\d+\s*$";
+            // need to find a way to input where there are more than one space between the operator and operands.
+
             string userInput = Console.ReadLine();
 
             while(userInput != "EXIT")
             {
-                // extract two operators and operands from user input.
-                string[] inputValues = userInput.Split();
-                int value1 = int.Parse(inputValues[0]);
-                int value2 = int.Parse(inputValues[2]);
-                string operation = inputValues[1];
+                if(Regex.IsMatch(userInput, pattern))
+                {
+                    // extract two operators and an operand from user input.
+                    string[] inputValues = userInput.Trim().Split();
+                    int value1 = int.Parse(inputValues[0]);
+                    int value2 = int.Parse(inputValues[2]);
+                    string operation = inputValues[1];
 
-                // modify Calculate method to simpy return the ints?
-                Calculate(value1, value2, operation);
+                    // modify Calculate method to simpy return the ints?
+                    Calculate(value1, value2, operation);
+                } else
+                {
+                    Console.WriteLine("Invalid input. Example input 5 + 2");
+                }
                 Console.WriteLine("Please enter next query");
                 userInput = Console.ReadLine();
             }
