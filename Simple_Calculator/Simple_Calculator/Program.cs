@@ -22,14 +22,19 @@ namespace Simple_Calculator
             Console.WriteLine("Please enter two operands and an operator (+,-,*,/)");
             Console.WriteLine("Type EXIT to end the program");
 
+            // need to find a way to handle non-standard input
             string userInput = Console.ReadLine();
 
             while(userInput != "EXIT")
             {
                 // extract two operators and operands from user input.
-                // use the operator symbol for the switch cases in the Calculate method.
-                // modify Calculate method to simpy return the ints.
-                Console.WriteLine("Answer");
+                string[] inputValues = userInput.Split();
+                int value1 = int.Parse(inputValues[0]);
+                int value2 = int.Parse(inputValues[2]);
+                string operation = inputValues[1];
+
+                // modify Calculate method to simpy return the ints?
+                Calculate(value1, value2, operation);
                 Console.WriteLine("Please enter next query");
                 userInput = Console.ReadLine();
             }
@@ -39,16 +44,16 @@ namespace Simple_Calculator
         {
             switch (function)
             {
-                case "Add":
+                case "+":
                     Console.WriteLine(Add(x, y));
                     break;
-                case "Subtract":
+                case "-":
                     Console.WriteLine(Subtract(x, y));
                     break;
-                case "Multiply":
+                case "*":
                     Console.WriteLine(Multiply(x, y));
                     break;
-                case "Divide":
+                case "/":
                     Console.WriteLine(Divide(x, y));
                     break;
                 default:
