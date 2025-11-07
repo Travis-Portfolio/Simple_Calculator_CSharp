@@ -25,7 +25,6 @@ namespace Simple_Calculator
             Console.WriteLine("Type EXIT to end the program");
 
             string pattern = @"^\s*\d+\s*[+\-*/]\s*\d+\s*$";
-            // need to find a way to input where there are more than one space between the operator and operands.
 
             string userInput = Console.ReadLine();
 
@@ -34,7 +33,7 @@ namespace Simple_Calculator
                 if(Regex.IsMatch(userInput, pattern))
                 {
                     // extract two operators and an operand from user input.
-                    string[] inputValues = userInput.Trim().Split();
+                    string[] inputValues = Regex.Split(userInput.Trim(), @"\s+");
                     int value1 = int.Parse(inputValues[0]);
                     int value2 = int.Parse(inputValues[2]);
                     string operation = inputValues[1];
