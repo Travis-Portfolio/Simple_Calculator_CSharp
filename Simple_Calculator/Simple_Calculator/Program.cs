@@ -33,7 +33,7 @@ namespace Simple_Calculator
         static void InputHandling()
         {
             // Change regex to take negative ints too
-            string pattern = @"^\s*\d+\s*[+\-*/]\s*\d+\s*$";
+            string pattern = @"^\s*-?\d+\s*[+\-*/]\s*-?\d+\s*$";
 
             string userInput = Console.ReadLine();
 
