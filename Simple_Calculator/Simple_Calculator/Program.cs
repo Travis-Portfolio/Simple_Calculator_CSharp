@@ -38,8 +38,9 @@ namespace Simple_Calculator
                     int value2 = int.Parse(inputValues[2]);
                     string operation = inputValues[1];
 
-                    // modify Calculate method to simpy return the ints?
-                    Calculate(value1, value2, operation);
+                    
+                    int answer = Calculate(value1, value2, operation);
+                    FormattedOutput(value1, value2, operation, answer );
                 } else
                 {
                     Console.WriteLine("Invalid input. Example input 5 + 2");
@@ -49,24 +50,30 @@ namespace Simple_Calculator
             }
         }
 
-        static void Calculate(int x, int y, string function)
+        static void FormattedOutput(int x, int y,  string operation, int answer)
+        {
+            Console.WriteLine($"{x} {operation} {y} = {answer}");
+        }
+
+        static int Calculate(int x, int y, string function)
         {
             switch (function)
             {
                 case "+":
-                    Console.WriteLine(Add(x, y));
+                    return Add(x, y);
                     break;
                 case "-":
-                    Console.WriteLine(Subtract(x, y));
+                    return Subtract(x, y);
                     break;
                 case "*":
-                    Console.WriteLine(Multiply(x, y));
+                    return Multiply(x, y);
                     break;
                 case "/":
-                    Console.WriteLine(Divide(x, y));
+                    return Divide(x, y);
                     break;
                 default:
-                    Console.WriteLine("Function not recognized");
+                    // technically unreachable due to input validation. -1 serves as a placeholder
+                    return -1;
                     break;
             }
         }
