@@ -32,21 +32,20 @@ namespace Simple_Calculator
 
         static void InputHandling()
         {
-            // Change regex to take negative ints too
-            string pattern = @"^\s*-?\d+\s*[+\-*/]\s*-?\d+\s*$";
+
 
             string userInput = Console.ReadLine();
 
-            while(userInput != "EXIT")
+            while (userInput != "EXIT")
             {
-                if(Regex.IsMatch(userInput, pattern))
+                var pattern = Regex.Match(userInput.Trim(), @"^\s*(-?\d+)\s*([+\-*/])\s*(-?\d+)\s*$");
+
+                if (pattern.Success)
                 {
                     // extract two operators and an operand from user input.
-                    string[] inputValues = Regex.Split(userInput.Trim(), @"\s+");
-                    // Need to handle inputs like 5+2 without spaces
-                    int value1 = int.Parse(inputValues[0]);
-                    int value2 = int.Parse(inputValues[2]);
-                    string operation = inputValues[1];
+                    int value1 = int.Parse(pattern.Groups[1].Value);
+                    int value2 = int.Parse(pattern.Groups[3].Value);
+                    string operation = pattern.Groups[2].Value;
 
                     
                     int answer = Calculate(value1, value2, operation);
