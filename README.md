@@ -3,7 +3,7 @@ A simple calculator that supports +, -, *, and / in a console interface.
 
 ## Features
 - Input validation
-- Looping menu
+- Looping query
 - Clear output formatting
 
 ## Skills Showcased
