@@ -19,15 +19,20 @@ namespace Simple_Calculator
 
         static void StartMenu()
         {
+            Console.WriteLine("============================================================");
             Console.WriteLine("Welcome to the C# calculator!");
             Console.WriteLine("Please enter two operands separated by an operator (+,-,*,/)");
+            // Make EXIT case insensitive
             Console.WriteLine("Type EXIT to end the program");
+            Console.WriteLine("============================================================");
+            Console.WriteLine();
 
             InputHandling();
         }
 
         static void InputHandling()
         {
+            // Change regex to take negative ints too
             string pattern = @"^\s*\d+\s*[+\-*/]\s*\d+\s*$";
 
             string userInput = Console.ReadLine();
@@ -38,6 +43,7 @@ namespace Simple_Calculator
                 {
                     // extract two operators and an operand from user input.
                     string[] inputValues = Regex.Split(userInput.Trim(), @"\s+");
+                    // Need to handle inputs like 5+2 without spaces
                     int value1 = int.Parse(inputValues[0]);
                     int value2 = int.Parse(inputValues[2]);
                     string operation = inputValues[1];
@@ -47,16 +53,21 @@ namespace Simple_Calculator
                     FormattedOutput(value1, value2, operation, answer );
                 } else
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Invalid input. Example input 5 + 2");
+                    Console.WriteLine();
                 }
                 Console.WriteLine("Please enter next query");
+                Console.WriteLine();
                 userInput = Console.ReadLine();
             }
         }
 
         static void FormattedOutput(int x, int y,  string operation, int answer)
         {
+            Console.WriteLine();
             Console.WriteLine($"{x} {operation} {y} = {answer}");
+            Console.WriteLine();
         }
 
         static int Calculate(int x, int y, string function)
