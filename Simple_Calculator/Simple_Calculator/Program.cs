@@ -7,7 +7,7 @@ namespace Simple_Calculator
     {
         static void Main(string[] args)
         {
-            startCalculator();
+            StartMenu();
 
             // Our basic functions only perform operations on integers.
 
@@ -17,13 +17,17 @@ namespace Simple_Calculator
            
         }
 
-        static void startCalculator()
+        static void StartMenu()
         {
-            // may want to separate some of this logic out, this method may be doing too much.
             Console.WriteLine("Welcome to the C# calculator!");
             Console.WriteLine("Please enter two operands separated by an operator (+,-,*,/)");
             Console.WriteLine("Type EXIT to end the program");
 
+            InputHandling();
+        }
+
+        static void InputHandling()
+        {
             string pattern = @"^\s*\d+\s*[+\-*/]\s*\d+\s*$";
 
             string userInput = Console.ReadLine();
