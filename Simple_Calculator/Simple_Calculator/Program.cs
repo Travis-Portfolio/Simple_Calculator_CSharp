@@ -1,5 +1,7 @@
-﻿using System.Text.RegularExpressions;
-using System.Transactions;
+﻿// Simple integer Calculator using a regex for parsing input.
+// Author: Travis DeBoard
+
+using System.Text.RegularExpressions;
 
 namespace Simple_Calculator
 {
@@ -30,6 +32,7 @@ namespace Simple_Calculator
 
             while (userInput != "exit")
             {
+                // Matches: (integer) (operator) (integer), allows spaces and negatives (e.g., "-5 * 2")
                 var pattern = Regex.Match(userInput.Trim(), @"^\s*(-?\d+)\s*([+\-*/])\s*(-?\d+)\s*$");
 
                 if (pattern.Success)
@@ -124,6 +127,12 @@ namespace Simple_Calculator
 
         static int Divide(int x, int y)
         {
+            // preventing division by 0
+            if(y == 0)
+            {
+                Console.WriteLine("Error: Cannot divide by zero");
+                return 0;
+            }
             return x / y;
         }
 
