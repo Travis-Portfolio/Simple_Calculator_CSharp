@@ -10,10 +10,6 @@ namespace Simple_Calculator
             StartMenu();
 
             // Our basic functions only perform operations on integers.
-
-            // Simple version of taking user input. Want to make this
-            // a single line of input like "3 + 4" and use the operator
-            // for the switch statement, so it's more like a real calculator.
            
         }
 
@@ -22,8 +18,7 @@ namespace Simple_Calculator
             Console.WriteLine("============================================================");
             Console.WriteLine("Welcome to the C# calculator!");
             Console.WriteLine("Please enter two operands separated by an operator (+,-,*,/)");
-            // Make EXIT case insensitive
-            Console.WriteLine("Type EXIT to end the program");
+            Console.WriteLine("Type exit to end the program");
             Console.WriteLine("============================================================");
             Console.WriteLine();
 
@@ -33,10 +28,9 @@ namespace Simple_Calculator
         static void InputHandling()
         {
 
+            string userInput = Console.ReadLine().ToLower();
 
-            string userInput = Console.ReadLine();
-
-            while (userInput != "EXIT")
+            while (userInput != "exit")
             {
                 var pattern = Regex.Match(userInput.Trim(), @"^\s*(-?\d+)\s*([+\-*/])\s*(-?\d+)\s*$");
 
@@ -58,7 +52,7 @@ namespace Simple_Calculator
                 }
                 Console.WriteLine("Please enter next query");
                 Console.WriteLine();
-                userInput = Console.ReadLine();
+                userInput = Console.ReadLine().ToLower();
             }
         }
 
