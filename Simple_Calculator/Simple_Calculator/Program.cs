@@ -7,16 +7,15 @@ namespace Simple_Calculator
     {
         static void Main(string[] args)
         {
+            // Only works for integers
             StartMenu();
-
-            // Our basic functions only perform operations on integers.
            
         }
 
         static void StartMenu()
         {
             Console.WriteLine("============================================================");
-            Console.WriteLine("Welcome to the C# calculator!");
+            Console.WriteLine("Welcome to The C# Integer Calculator!");
             Console.WriteLine("Please enter two operands separated by an operator (+,-,*,/)");
             Console.WriteLine("Type exit to end the program");
             Console.WriteLine("============================================================");
@@ -27,7 +26,6 @@ namespace Simple_Calculator
 
         static void InputHandling()
         {
-
             string userInput = Console.ReadLine().ToLower();
 
             while (userInput != "exit")
@@ -46,20 +44,43 @@ namespace Simple_Calculator
                     FormattedOutput(value1, value2, operation, answer );
                 } else
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Invalid input. Example input 5 + 2");
-                    Console.WriteLine();
+                    InvalidInputMessage();
                 }
-                Console.WriteLine("Please enter next query");
+                Console.WriteLine("Please enter next query:");
                 Console.WriteLine();
                 userInput = Console.ReadLine().ToLower();
             }
+            ExitMessage();
+        }
+
+        static void InvalidInputMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine("************************************************************");
+            Console.WriteLine();
+            Console.WriteLine("Invalid input. Try again. Example input 5 + 2");
+            Console.WriteLine();
+            Console.WriteLine("************************************************************");
+            Console.WriteLine();
+        }
+        static void ExitMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine("============================================================");
+            Console.WriteLine("Thank you for using The C# Integer Calculator!");
+            Console.WriteLine("GOODBYE!");
+            Console.WriteLine("============================================================");
+            Console.WriteLine();
         }
 
         static void FormattedOutput(int x, int y,  string operation, int answer)
         {
             Console.WriteLine();
-            Console.WriteLine($"{x} {operation} {y} = {answer}");
+            Console.WriteLine("############################################################");
+            Console.WriteLine();
+            Console.WriteLine($"Answer: {x} {operation} {y} = {answer}");
+            Console.WriteLine();
+            Console.WriteLine("############################################################");
             Console.WriteLine();
         }
 
